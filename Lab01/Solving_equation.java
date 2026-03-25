@@ -1,4 +1,4 @@
-package Lab01;
+
 import java.util.Scanner;
 public class Solving_equation{
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Solving_equation{
             double a22=qa.nextDouble();
             double b2=qa.nextDouble();
             System.out.println("Phuong trinh da nhap la: "+a11+"x+"+a12+"y="+b1+"; "+a21+"x+"+a22+"y="+b2);
-            System.out.println(giaihe2an(a11, a11, b1, a21, a22, b2));
+            System.out.println(giaihe2an(a11, a12, b1, a21, a22, b2));
         }
         else if(cmd==3)
         {
@@ -38,6 +38,7 @@ public class Solving_equation{
             System.out.println("Phuong trinh da nhap la: "+a+"x^2+"+b+"x+"+c+"=0");
             System.out.println(giaihe1anbac2(a,b,c));
         }
+        qa.close();
     }
     public static String giaihe1anbacnhat(double a,double b,double c)
     {   String toreturn;
@@ -87,6 +88,7 @@ public class Solving_equation{
             else if(delta<0)
             {
                 toreturn="Phuong trinh vo nghiem";
+                return toreturn;
             }
             else if(delta>0)
             {
@@ -94,8 +96,11 @@ public class Solving_equation{
                 double nghiem1=(-b+qa)/2/a;
                 double nghiem2=(-b-qa)/2/a;
                 toreturn=("Phuong trinh co 2 nghiem la: "+"x1="+nghiem1+";"+"x2="+nghiem2);
+                return toreturn;
             }
+            
         }
+        return null;
     }
 }
 

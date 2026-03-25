@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "make_triangle",
+      "request": "launch",
+      "mainClass": "Lab01.make_triangle",
+      "projectName": "OOP.Lab.20252.761932.202416859.TruongDoQuocAnh_705c82c2"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/truongdoquocanh/Documents/Code",
+      "program": "/Users/truongdoquocanh/Documents/Code/build/Debug/outDebug"
+    }
+  ]
+}
