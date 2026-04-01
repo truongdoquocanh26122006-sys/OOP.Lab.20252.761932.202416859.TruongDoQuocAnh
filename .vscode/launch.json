@@ -13,8 +13,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/truongdoquocanh/Documents/Code",
-      "program": "/Users/truongdoquocanh/Documents/Code/build/Debug/outDebug"
+      "cwd": "/Users/truongdoquocanh/Documents/Code/C",
+      "program": "/Users/truongdoquocanh/Documents/Code/C/build/Debug/outDebug"
     }
   ]
 }
