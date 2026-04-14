@@ -21,6 +21,19 @@ public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		}
 	}
 }
+public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
+	int n=dvdList.length;
+	int cur=qtyOrdered;
+	if(cur+n>MAX_NUMBERS_ORDERED) {
+		JOptionPane.showMessageDialog(null,"Limit exceeded");
+	}
+	else {
+		for(int i=0;i<n;i++)
+		{
+			addDigitalVideoDisc(dvdList[i]);
+		}
+	}
+}
 public float totalCost() {
 	float sum=0;
 	for(int i=0;i<qtyOrdered;i++)
