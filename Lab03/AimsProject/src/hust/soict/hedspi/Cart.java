@@ -1,6 +1,5 @@
+package hust.soict.hedspi;
 import javax.swing.JOptionPane;
-
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
 public class Cart {
 public static final int MAX_NUMBERS_ORDERED =20;
 int qtyOrdered;
@@ -79,5 +78,5 @@ public void searchByTitle(String title) {
 }
 }
 
-}
+
 //alo alo alo 123

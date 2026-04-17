@@ -1,5 +1,5 @@
-package hust.soict.dsai.aims.disc;
 
+package hust.soict.hedspi;
 public class DigitalVideoDisc {
 private String title;
 private String category;
