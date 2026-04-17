@@ -1,0 +1,11 @@
+# macOS system files
+.DS_Store
+
+# Build folders
+bin/
+target/
+
+# IDE files
+.settings/
+.classpath
+.project
