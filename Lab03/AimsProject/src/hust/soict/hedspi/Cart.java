@@ -2,7 +2,7 @@ package hust.soict.hedspi;
 import javax.swing.JOptionPane;
 public class Cart {
 public static final int MAX_NUMBERS_ORDERED =20;
-int qtyOrdered;
+private int qtyOrdered;
 private DigitalVideoDisc itemsOrdered[]=new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
 public void addDigitalVideoDisc(DigitalVideoDisc disc) {
 	itemsOrdered[qtyOrdered]=disc;

@@ -1,3 +1,10 @@
+Question: Try to add a method addDigitalVideoDisc which allows to pass an arbitrary number of
+arguments for dvd. Compare to an array parameter. What do you prefer in this case?
+- Ưu tiên cách 1 hơn, vì nếu dùng mảng tham số, ta cần khởi tạo trước và khiến quá trình trở nên rườm rà, chậm hơn cách kia
+
+Question: Write a toString() method for the DigitalVideoDisc class. What should be the return type of this method?
+- Nên trả về kiểu String để dễ xử lý chuỗi sau đó
+
 Question: Is JAVA a Pass by Value or a Pass by Reference programming language?
 Trả lời: Java hoàn toàn là ngôn ngữ Pass by Value (Truyền tham trị).
 
