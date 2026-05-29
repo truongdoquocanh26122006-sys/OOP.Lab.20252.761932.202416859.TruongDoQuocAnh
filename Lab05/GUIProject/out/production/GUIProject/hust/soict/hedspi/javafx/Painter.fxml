@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane prefHeight="480.0" prefWidth="640.0" style="-fx-padding: 8;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hust.soict.hedspi.javafx.PainterController">
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" spacing="8.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets right="8.0" />
+         </BorderPane.margin>
+         <children>
+             <Button text="Clear" maxWidth="Infinity" onAction="#clearButtonPressed"/>
+             <TitledPane text="Tools" animated="false">
+                <VBox spacing="5">
+                   <RadioButton text="Pen" selected="true" fx:id="radioPen">
+                      <toggleGroup><ToggleGroup fx:id="toolGroup"/></toggleGroup>
+                   </RadioButton>
+                   <RadioButton text="Eraser" fx:id="radioEraser">
+                      <toggleGroup><fx:reference source="toolGroup"/></toggleGroup>
+                   </RadioButton>
+                </VBox>
+             </TitledPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <Pane fx:id="drawingAreaPane" onMouseDragged="#drawingAreaMouseDragged" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
