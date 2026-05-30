@@ -1,6 +1,38 @@
-Question:
-- If you create a constructor method to build a DVD by title then create a constructor method to build
-a DVD by category. Does JAVA allow you to do this?
-Answer:
-- Java không cho phép người dùng tạo ra 2 hàm khởi tạo với cùng một kiểu tham số là String. 
--> Java không cho phép
+Question: Is JAVA a Pass by Value or a Pass by Reference programming language?
+Trả lời: Java hoàn toàn là ngôn ngữ Pass by Value (Truyền tham trị).
+
+1. Tại sao hàm swap() thông thường không hoạt động?
+Trong Java, khi truyền một đối tượng vào hàm, thực chất ta đang truyền bản sao của giá trị tham chiếu (copy of the reference).
+
+Việc hoán đổi trong hàm swap(dvd1, dvd2) chỉ diễn ra cục bộ trên các biến tạm (local variables) ở vùng nhớ Stack.
+
+Các biến tham chiếu gốc bên ngoài vẫn trỏ đến vị trí cũ trên Heap, do đó trạng thái của chúng không hề bị ảnh hưởng sau khi hàm kết thúc.
+
+2. Tại sao hàm changeTitle() lại hoạt động?
+Mặc dù tham chiếu truyền vào là một bản sao, nhưng cả bản sao này và biến gốc đều cùng trỏ chung đến một địa chỉ đối tượng duy nhất trên Heap.
+
+Khi ta thực hiện thay đổi thuộc tính của đối tượng thông qua bản sao, chúng ta đang tác động trực tiếp lên chính vùng nhớ chứa đối tượng đó.
+
+Vì vậy, mọi thay đổi về dữ liệu bên trong đối tượng sẽ được ghi nhận cho cả biến tham chiếu gốc.
+
+=> Kết luận: Java luôn luôn truyền tham trị. Với kiểu dữ liệu đối tượng, "giá trị" được truyền đi chính là địa chỉ tham chiếu.
+
+3. Cách viết hàm swap() chính xác
+Để thực hiện hoán đổi thực tế trong Java, thay vì cố gắng tráo đổi các biến tham chiếu, chúng ta phải hoán đổi nội dung dữ liệu bên trong các đối tượng đó:
+ public static void swap(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2){
+        String tmpTitle=dvd1.getTitle();
+        String tmpCategory=dvd1.getCategory();
+        String tmpDirector=dvd1.getDirector();
+        int tmpLength=dvd1.getLength();
+        float tmpCost=dvd1.getCost();
+        dvd1.setTitle(dvd2.getTitle());
+        dvd1.setCategory(dvd2.getCategory());
+        dvd1.setDirector(dvd2.getDirector());
+        dvd1.setLength(dvd2.getLength());
+        dvd1.setCost(dvd2.getCost());
+        dvd2.setTitle(tmpTitle);
+        dvd2.setCategory(tmpCategory);
+        dvd2.setDirector(tmpDirector);
+        dvd2.setLength(tmpLength);
+        dvd2.setCost(tmpCost);
+    }
