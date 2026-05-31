@@ -32,14 +32,11 @@ public abstract class Media {
         this.cost=cost;
     }
     public boolean equals(Object o){
-        if(!(o instanceof Media)){
-            return false;
-        }
-        Media b=(Media) o;
-        if(this.getTitle()==b.getTitle()){
-            return true;
-        }
-        return false;
+        if(o == null) return false;
+        if(!(o instanceof Media)) return false;
+        Media b = (Media) o;
+        if(this.getTitle() == null) return false;
+        return this.getTitle().equals(b.getTitle());
     }
     public String toString(){
         return "ID: "+this.getId()+" Title: "+this.getTitle()+" Category: "+this.getCategory()+" Cost: "+this.getCost();

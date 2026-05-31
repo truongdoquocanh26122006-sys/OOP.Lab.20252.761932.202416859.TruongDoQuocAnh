@@ -3,6 +3,8 @@ package hust.soict.hedspi.aims;
 import java.util.Scanner;
 import hust.soict.media.*;
 import java.util.ArrayList;
+import hust.soict.hedspi.aims.exception.LimitExceededException;
+import hust.soict.hedspi.aims.exception.PlayerException;
 
 public class Aims {
     private static Store store = new Store();
@@ -63,7 +65,11 @@ public class Aims {
                     String t = qa.nextLine();
                     Media mediaAdd = store.searchByTitle(t);
                     if (mediaAdd != null) {
-                        cart.addMedia(mediaAdd);
+                        try {
+                            cart.addMedia(mediaAdd);
+                        } catch (LimitExceededException e) {
+                            System.out.println(e.getMessage());
+                        }
                     } else {
                         System.out.println("Khong tim thay.");
                     }
@@ -73,7 +79,12 @@ public class Aims {
                     String tp = qa.nextLine();
                     Media mediaPlay = store.searchByTitle(tp);
                     if (mediaPlay != null && (mediaPlay instanceof Playable)) {
-                        ((Playable) mediaPlay).play();
+                        try {
+                            ((Playable) mediaPlay).play();
+                        } catch (PlayerException e) {
+                            System.out.println(e.getMessage());
+                            e.printStackTrace();
+                        }
                     } else {
                         System.out.println("Media khong ton tai hoac khong the play.");
                     }
@@ -90,8 +101,19 @@ public class Aims {
         System.out.println("Options: \n--------------------------------\n1. Add to cart\n2. Play\n0. Back\n--------------------------------");
         int c = qa.nextInt();
         qa.nextLine();
-        if (c == 1) cart.addMedia(m);
-        else if (c == 2 && m instanceof Playable) ((Playable) m).play();
+        if (c == 1) {
+            try {
+                cart.addMedia(m);
+            } catch (LimitExceededException e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (c == 2 && m instanceof Playable) {
+            try {
+                ((Playable) m).play();
+            } catch (PlayerException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     // --- MENU CẤP 1: VIEW CART ---

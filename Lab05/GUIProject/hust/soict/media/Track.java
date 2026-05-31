@@ -1,5 +1,7 @@
 package hust.soict.media;
 
+import hust.soict.hedspi.aims.exception.PlayerException;
+
 public class Track implements Playable{
     private String title;
     private int length;
@@ -13,12 +15,13 @@ public class Track implements Playable{
         title=null;
         length=0;
     }
-    public void play(){
-        if(getLength()!=0){
-        System.out.println("Playing track: "+this.getTitle());
-        System.out.println("Track length: "+this.getLength());}
-        else{
-            System.out.println("This track can't not be played");
+    public void play() throws PlayerException {
+        if(getLength() > 0){
+            System.out.println("Playing track: "+this.getTitle());
+            System.out.println("Track length: "+this.getLength());
+        } else {
+            System.err.println("ERROR: Track length is non-positive!");
+            throw new PlayerException("ERROR: Track length is non-positive!");
         }
     }
     public boolean equals (Object o){

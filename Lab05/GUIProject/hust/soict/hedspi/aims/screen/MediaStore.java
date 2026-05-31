@@ -5,6 +5,8 @@ import javax.swing.BorderFactory;
 import java.awt.*;
 
 import hust.soict.hedspi.aims.Cart;
+import hust.soict.hedspi.aims.exception.LimitExceededException;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.media.Media;
 import hust.soict.media.Playable;
 
@@ -33,7 +35,11 @@ public class MediaStore extends JPanel {
         container.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton btnAddToCart=new JButton("Add to cart");
         btnAddToCart.addActionListener(e -> {
-            cart.addMedia(media);
+            try {
+                cart.addMedia(media);
+            } catch (LimitExceededException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
         container.add(btnAddToCart);
 
@@ -41,7 +47,11 @@ public class MediaStore extends JPanel {
         if (media instanceof Playable) {
             JButton play=new JButton("Play");
             play.addActionListener(e -> {
-                JOptionPane.showMessageDialog(this,media.toString());
+                try {
+                    ((Playable) media).play();
+                } catch (PlayerException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             });
             container.add(play);
         }

@@ -20,13 +20,26 @@ public class StoreScreen extends JFrame{
     JMenuBar createMenuBar(){
         JMenu menu= new JMenu("Options");
         JMenu smUpdateStore = new JMenu("Update Store");
-        smUpdateStore.add( new JMenuItem("Add Book"));
-        smUpdateStore.add(new JMenuItem("Add CD"));
-        smUpdateStore.add(new JMenuItem("Add DVD"));
+
+        JMenuItem miAddBook = new JMenuItem("Add Book");
+        JMenuItem miAddCD   = new JMenuItem("Add CD");
+        JMenuItem miAddDVD  = new JMenuItem("Add DVD");
+        miAddBook.addActionListener(e -> new AddBookToStoreScreen(store, cart));
+        miAddCD.addActionListener(e ->   new AddCompactDiscToStoreScreen(store, cart));
+        miAddDVD.addActionListener(e ->  new AddDigitalVideoDiscToStoreScreen(store, cart));
+        smUpdateStore.add(miAddBook);
+        smUpdateStore.add(miAddCD);
+        smUpdateStore.add(miAddDVD);
+
+        JMenuItem miViewStore = new JMenuItem("View store");
+        miViewStore.addActionListener(e -> toFront());
+
+        JMenuItem miViewCart = new JMenuItem("View Cart");
+        miViewCart.addActionListener(e -> new CartScreen(store, cart));
 
         menu.add(smUpdateStore);
-        menu.add(new JMenuItem("View store"));
-        menu.add(new JMenuItem("View Cart"));
+        menu.add(miViewStore);
+        menu.add(miViewCart);
         JMenuBar menuBar=new JMenuBar();
         menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
         menuBar.add(menu);
@@ -42,6 +55,7 @@ public class StoreScreen extends JFrame{
         JButton cart= new JButton("View cart");
         cart.setPreferredSize(new Dimension(100,50));
         cart.setMaximumSize(new Dimension(100,50));
+        cart.addActionListener(e -> new CartScreen(store, this.cart));
 
         header.add(Box.createRigidArea(new Dimension(10,10)));
         header.add(title);
@@ -63,6 +77,19 @@ public class StoreScreen extends JFrame{
 
         return center;
     }
+    public StoreScreen(Store store, Cart cart) {
+        this.store = store;
+        this.cart = cart;
+
+        Container cp = getContentPane();
+        cp.setLayout(new BorderLayout());
+        cp.add(createNorth(), BorderLayout.NORTH);
+        cp.add(createCenter(), BorderLayout.CENTER);
+        setVisible(true);
+        setTitle("Store");
+        setSize(1024, 768);
+    }
+
     public StoreScreen(Store store) {
         this.store = store;
         this.cart= new Cart();

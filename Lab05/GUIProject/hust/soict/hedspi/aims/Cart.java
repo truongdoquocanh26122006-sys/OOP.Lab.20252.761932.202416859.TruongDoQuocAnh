@@ -1,19 +1,24 @@
 package hust.soict.hedspi.aims;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
 import hust.soict.media.Media;
 import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import hust.soict.hedspi.aims.exception.LimitExceededException;
 public class Cart{
-private ArrayList<Media> itemsOrdered=new ArrayList<Media>();
-public void addMedia(Media mail){
-if(itemsOrdered.contains(mail)){
-	System.out.println("Da ton tai media nay");
-}
-else{
-	itemsOrdered.add(mail);
-	System.out.println("Da add media");
-}
+private static final int MAX_NUMBERS_ORDERED = 20;
+private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
+public void addMedia(Media mail) throws LimitExceededException {
+    if(itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
+        throw new LimitExceededException("ERROR: The number of media has reached its limit");
+    }
+    if(itemsOrdered.contains(mail)){
+        System.out.println("Da ton tai media nay");
+    } else {
+        itemsOrdered.add(mail);
+        System.out.println("Da add media");
+    }
 }
 public void removeMedia(Media mail){
 if(itemsOrdered.contains(mail)){
@@ -67,8 +72,11 @@ public void sortByTitleCost(){
 	System.out.println("Da sort theo title");
 }
 public void sortByCostTitle(){
-	Collections.sort(itemsOrdered,Media.COMPARE_BY_COST_TITLE); 
+	Collections.sort(itemsOrdered,Media.COMPARE_BY_COST_TITLE);
 	System.out.println("Da sort theo Cost");
+}
+public ObservableList<Media> getItemsOrdered() {
+    return itemsOrdered;
 }
 }
 
