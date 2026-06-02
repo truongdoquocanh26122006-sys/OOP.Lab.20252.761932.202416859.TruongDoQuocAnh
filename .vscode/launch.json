@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Polymorphism",
+      "request": "launch",
+      "mainClass": "hust.soict.media.Polymorphism",
+      "projectName": "OOP.Lab.20252.761932.202416859.TruongDoQuocAnh_705c82c2"
+    },
+    {
+      "type": "java",
       "name": "make_triangle",
       "request": "launch",
       "mainClass": "Lab01.make_triangle",

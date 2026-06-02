@@ -1,0 +1,36 @@
+Question: Which classes are aggregates of other classes?
+Cart - Media
+TestingPassingParameter - DigitalVideoDisc
+Store - Media
+CompactDisc - Track
+Question: Checking all constructors of whole classes if they initialize for their parts?
+- Done.
+Question: If the passing object is not an instance of Media, what happens?
+- Bị lỗi ClassCastException
+Question: What class should implement the Comparable interface?
+- Lớp media vì lớp này chứa các thuộc tính chung cần để so sánh là title và cost
+Question: how should you implement the compareTo() method be to reflect the ordering that we want?
+- Cần ghi đè phương thức compareTo(Media other), viết code chọn 1 trong 2 cách sort là title trước, cost sau hoặc cost trước title sau
+Question: Can we have two ordering rules of the item if we use this Comparable interface approach?
+- Không, giao diện Comparable chỉ cho định nghĩa 1 thứ tự sắp xếp
+Question: Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+- Ghi de code compareTo() nhu nay:
+@Override
+public int compareTo(Media other) {
+    // 1. So sánh tiêu đề theo bảng chữ cái
+    int titleDiff = this.getTitle().compareTo(other.getTitle());
+    if (titleDiff != 0) return titleDiff;
+
+    // 2. Nếu cùng tiêu đề, xét trường hợp cả hai đều là DVD để so sánh Length
+    if (this instanceof DigitalVideoDisc && other instanceof DigitalVideoDisc) {
+        DigitalVideoDisc d1 = (DigitalVideoDisc) this;
+        DigitalVideoDisc d2 = (DigitalVideoDisc) other;
+        
+        // So sánh độ dài giảm dần (decreasing length)
+        int lengthDiff = Integer.compare(d2.getLength(), d1.getLength());
+        if (lengthDiff != 0) return lengthDiff;
+    }
+
+    // 3. Nếu vẫn bằng nhau hoặc không phải DVD, so sánh giá (giảm dần theo cost)
+    return Float.compare(other.getCost(), this.getCost());
+}

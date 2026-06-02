@@ -1,0 +1,51 @@
+Lab 05: GUI Programming - Answers
+===================================
+
+Section 1.3 - Compare Swing and AWT elements
+---------------------------------------------
+
+Q: What are the differences between the top-level containers in Swing and AWT?
+
+A: In AWT, the top-level containers are Frame, Dialog, and Applet.
+   In Swing, the corresponding top-level containers are JFrame, JDialog, and JApplet.
+   The key difference is that Swing top-level containers use a "content pane"
+   (a Container object) to hold components, whereas in AWT components are added
+   directly to the Frame. In Swing, JComponents are lightweight and must be added
+   to the content pane (getContentPane()), not directly to the JFrame.
+
+Q: What are the class names of components in AWT and their corresponding class names in Swing?
+
+A: AWT Component       | Swing Equivalent
+   -------------------|------------------
+   Label              | JLabel
+   Button             | JButton
+   TextField          | JTextField
+   TextArea           | JTextArea
+   Checkbox           | JCheckBox
+   List               | JList
+   Choice             | JComboBox
+   Panel              | JPanel
+   ScrollBar          | JScrollBar
+   MenuBar            | JMenuBar
+   Menu               | JMenu
+   MenuItem           | JMenuItem
+   Frame              | JFrame
+   Dialog             | JDialog
+
+   The main difference is that Swing components are prefixed with "J" and are
+   lightweight (they don't rely on native OS components), while AWT components
+   are heavyweight (each has a native OS peer).
+
+
+Section 14 - Update the Aims class
+------------------------------------
+
+Q: What happens when you don't update the Aims class to catch the PlayerException?
+
+A: Since PlayerException is a checked exception (extends Exception), the Java
+   compiler will produce a compile-time error: "Unhandled exception type PlayerException".
+   The code will not compile at all until all callers of play() either catch the
+   exception with a try-catch block or declare it with the throws keyword.
+   If the exception were unchecked (extending RuntimeException), the code would
+   compile but would crash at runtime with an unhandled exception whenever play()
+   is called on a media with non-positive length, terminating the program abruptly.
